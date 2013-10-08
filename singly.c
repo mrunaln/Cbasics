@@ -8,6 +8,7 @@ typedef struct Node{
 
 Node * listCreate(Node *head);
 Node * listDelete(Node *head, int value);
+Node * listReverse(Node *head);
 void listPrint(Node *head);
 int main(){
 
@@ -20,6 +21,8 @@ int main(){
 	listPrint(head);
 	/*delete node from list*/
 	head = listDelete(head, 1);
+	listPrint(head);
+	head =listReverse(head);
 	listPrint(head);
 	return 0;
 }
@@ -81,4 +84,22 @@ Node * listDelete(Node *head, int value){
 		printf("Your list is empty\n");
 		return head;
 	}
+}
+
+
+Node * listReverse(Node *head){
+
+	Node *forward;
+ 	Node *previous = NULL;
+
+	while (head != NULL)
+	{
+ 		forward = head->next; // before breaking the link  to nxt node move the frd ptr
+  		head->next = previous;
+  		previous = head;
+  		head = forward;  
+  
+	}
+	return previous;
+
 }
